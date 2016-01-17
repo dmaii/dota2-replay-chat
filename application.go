@@ -1,35 +1,55 @@
 package main
 
 import (
-  "os"
-  "fmt"
-  "github.com/dotabuff/manta"
-  "github.com/dotabuff/manta/dota"
+	"fmt"
+	"os"
+
+	"dota2parser/lib"
+	"dota2parser/lib/structs"
+
+	"github.com/dotabuff/manta"
+	"github.com/dotabuff/manta/dota"
 )
 
 func main() {
-  // Create a new parser instance from a file. Alternatively see NewParser([]byte)
-  p, _ := manta.NewParserFromFile(os.Args[1])
+	p, _ := manta.NewParserFromFile(os.Args[1])
+	//m := make(map[string]bool)
+	var gameTime float64 = 0
+	var startTime float64 = 0
 
-  // Register a callback, this time for the OnCUserMessageSayText2 event.
-//  p.Callbacks.OnCUserMessageSayText2(func(m *dota.CUserMessageSayText2) error {
-//    fmt.Printf("%#v \n", m)
-//    fmt.Print(m.GetMessagename(), m.GetParam3())
-//    //fmt.Printf("%s said: %s \n", m.GetParam1(), m.GetParam2())
-//    return nil
-//  })
+	game := &structs.Game{}
 
-  p.Callbacks.OnCUserMessageSayText(func(m *dota.CUserMessageSayText) error {
-    return nil
-  })
+	p.Callbacks.OnCUserMessageSayText2(func(m *dota.CUserMessageSayText2) error {
+		clock := lib.GetGameClock(gameTime, startTime)
+		msg := structs.Message{
+			Message:    m.GetParam2(),
+			PlayerName: m.GetParam1(),
+			Clock:      clock,
+		}
+		game.Messages = append(game.Messages, msg)
 
-  p.Callbacks.OnCDemoFileInfo(func(m *dota.CDemoFileInfo) error {
-    _ = "breakpoint"
-    fmt.Println(m.GetGameInfo().GetDota().GetPlayerInfo())
+		return nil
+	})
 
-    return nil
-  })
+	p.Callbacks.OnCDemoFileInfo(func(m *dota.CDemoFileInfo) error {
+		game.Players = lib.GetPlayers(m)
+		game.MatchId = fmt.Sprint(m.GetGameInfo().GetDota().GetMatchId())
 
-  // Start parsing the replay!
-  p.Start()
+		return nil
+	})
+
+	p.OnPacketEntity(func(pe *manta.PacketEntity, pet manta.EntityEventType) error {
+		if pe.ClassName == "CDOTAGamerulesProxy" {
+			gameTime32, _ := pe.FetchFloat32("CDOTAGamerules.m_fGameTime")
+			startTime32, _ := pe.FetchFloat32("CDOTAGamerules.m_flGameStartTime")
+
+			gameTime = float64(gameTime32)
+			startTime = float64(startTime32)
+		}
+
+		return nil
+	})
+
+	p.Start()
+	fmt.Println(lib.StructToJson(game))
 }
