@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"dota2parser/lib"
-	"dota2parser/lib/structs"
+	"github.com/suisha/dota2-replay-chat/lib"
+	"github.com/suisha/dota2-replay-chat/lib/structs"
 
 	"github.com/dotabuff/manta"
 	"github.com/dotabuff/manta/dota"

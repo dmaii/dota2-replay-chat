@@ -1,9 +1,9 @@
 package lib
 
 import (
-	"dota2parser/lib/structs"
 	"fmt"
 	"github.com/dotabuff/manta/dota"
+	"github.com/suisha/dota2-replay-chat/lib/structs"
 )
 
 func GetPlayers(fileInfo *dota.CDemoFileInfo) []structs.Player {

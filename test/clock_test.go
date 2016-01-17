@@ -1,7 +1,7 @@
 package test
 
 import (
-	"dota2parser/lib"
+	"github.com/suisha/dota2-replay-chat/lib"
 	"testing"
 )
 
