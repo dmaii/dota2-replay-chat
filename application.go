@@ -20,11 +20,10 @@ func main() {
 	game := &structs.Game{}
 
 	p.Callbacks.OnCUserMessageSayText2(func(m *dota.CUserMessageSayText2) error {
-		clock := lib.GetGameClock(gameTime, startTime)
 		msg := structs.Message{
 			Message:    m.GetParam2(),
 			PlayerName: m.GetParam1(),
-			Clock:      clock,
+			Time:       gameTime,
 		}
 		game.Messages = append(game.Messages, msg)
 
@@ -51,5 +50,11 @@ func main() {
 	})
 
 	p.Start()
+
+	for i := range game.Messages {
+		clock := lib.GetGameClock(game.Messages[i].Time, startTime)
+		game.Messages[i].Clock = clock
+	}
+
 	fmt.Println(lib.StructToJson(game))
 }
