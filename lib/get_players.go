@@ -17,6 +17,7 @@ func GetPlayers(fileInfo *dota.CDemoFileInfo) []structs.Player {
 			Name:    pi.GetPlayerName(),
 			Hero:    pi.GetHeroName(),
 			SteamId: fmt.Sprint(pi.GetSteamid()),
+			Team:    pi.GetGameTeam(),
 		}
 
 		players = append(players, p)
