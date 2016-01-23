@@ -56,5 +56,6 @@ func main() {
 		game.Messages[i].Clock = clock
 	}
 
+	//test
 	fmt.Println(lib.StructToJson(game))
 }
