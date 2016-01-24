@@ -4,7 +4,7 @@ script: ./build
 
 deploy:
   provider: releases
-  api_key: "GITHUB OAUTH TOKEN"
+  api_key: $GITHUB_TOKEN
   file: "./dota2-replay-chat-linux-amd64"
   skip_cleanup: true
   on:
