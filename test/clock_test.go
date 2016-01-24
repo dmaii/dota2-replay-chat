@@ -1,4 +1,4 @@
-package test
+package lib_test
 
 import (
 	"github.com/suisha/dota2-replay-chat/lib"
