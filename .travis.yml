@@ -1,6 +1,9 @@
 language: go
 
-script: ./build
+script: env GOOS=linux GOARCH=amd64 go build -v application.go && mv application dota2-replay-chat-linux-amd64
+
+env:
+  GITHUB_TOKEN=$GITHUB_TOKEN
 
 deploy:
   provider: releases
