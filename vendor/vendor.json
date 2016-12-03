@@ -1,0 +1,49 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "dvabztWVQX8f6oMLRyv4dLH+TGY=",
+			"path": "github.com/davecgh/go-spew/spew",
+			"revision": "346938d642f2ec3594ed81d874461961cd0faa76",
+			"revisionTime": "2016-10-29T20:57:26Z"
+		},
+		{
+			"checksumSHA1": "fH7igutc+pWKeayW52RrYEFcD/g=",
+			"path": "github.com/dotabuff/manta",
+			"revision": "2ddec8b5e14fb9741ca6281901183bb005d97cad",
+			"revisionTime": "2016-11-09T17:55:07Z"
+		},
+		{
+			"checksumSHA1": "OD/4BttXLX9wuJsrGuNjManmTh8=",
+			"path": "github.com/dotabuff/manta/dota",
+			"revision": "2ddec8b5e14fb9741ca6281901183bb005d97cad",
+			"revisionTime": "2016-11-09T17:55:07Z"
+		},
+		{
+			"checksumSHA1": "LIT+DT41OUINHNHXZdGeALGYGy8=",
+			"path": "github.com/dotabuff/manta/vbkv",
+			"revision": "2ddec8b5e14fb9741ca6281901183bb005d97cad",
+			"revisionTime": "2016-11-09T17:55:07Z"
+		},
+		{
+			"checksumSHA1": "kBeNcaKk56FguvPSUCEaH6AxpRc=",
+			"path": "github.com/golang/protobuf/proto",
+			"revision": "8ee79997227bf9b34611aee7946ae64735e6fd93",
+			"revisionTime": "2016-11-17T03:31:26Z"
+		},
+		{
+			"checksumSHA1": "AjyXQ5eohrCPS/jSWZFPn5E8wnQ=",
+			"path": "github.com/golang/protobuf/protoc-gen-go/descriptor",
+			"revision": "8ee79997227bf9b34611aee7946ae64735e6fd93",
+			"revisionTime": "2016-11-17T03:31:26Z"
+		},
+		{
+			"checksumSHA1": "W+E/2xXcE1GmJ0Qb784ald0Fn6I=",
+			"path": "github.com/golang/snappy",
+			"revision": "d9eb7a3d35ec988b8585d4a0068e462c27d28380",
+			"revisionTime": "2016-05-29T05:00:41Z"
+		}
+	],
+	"rootPath": "github.com/suisha/dota2-replay-chat"
+}
