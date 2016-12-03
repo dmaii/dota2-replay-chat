@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/suisha/dota2-replay-chat/lib"
@@ -12,8 +13,13 @@ import (
 )
 
 func main() {
-	p, _ := manta.NewParserFromFile(os.Args[1])
-	//m := make(map[string]bool)
+	f, err := os.Open(os.Args[1])
+	if err != nil {
+		log.Fatalf("unable to open file: %s", err)
+	}
+	defer f.Close()
+
+	p, _ := manta.NewStreamParser(f)
 	var gameTime float64 = 0
 	var startTime float64 = 0
 
